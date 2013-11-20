@@ -1,0 +1,26 @@
+{% extends 'AWDFootballBundle::layout.html.twig' %}
+{% block title %}New game{% endblock %}
+{% block nav %}
+    <ul class="nav navbar-nav">
+            <li ><a href="{{ path('awd_football_homepage') }}">Home</a></li>
+            <li><a href="{{ path('awd_team') }}">Teams</a></li>
+            <li><a href="{{ path('awd_player') }}">Players</a></li>
+            <li class="active"><a href="{{ path('awd_game') }}">Games</a></li>
+            
+          </ul>
+{% endblock %}
+{% block content %}
+    <h1>Game creation</h1>
+
+    <form class="form-inline" action="{{ path('awd_game_new') }}"  method="post" >
+                {{ form_widget(form.team_one_id) }}{{ form_widget(form.team_one_score) }}
+                {{ form_widget(form.team_two_score) }}{{ form_widget(form.team_two_id) }}
+                {{ form_widget(form.created_at) }}           
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+
+        <a href="{{ path('awd_game') }}"  class="btn btn-primary">
+            Back to the list
+        </a>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'AWDFootballBundle::layout.html.twig' %}
+
+{% block content%}
+    <h1>Team edit</h1>
+<div class="row">
+    <div class="col-lg-8">
+        {{ form_start(edit_form) }}
+            {{ form_errors(edit_form) }}
+        {{ form_end(edit_form) }}{{ form(delete_form) }}
+    </div>
+    
+    <div class="col-lg-4"><a href="{{ path('awd_team') }}" class="btn btn-primary">Back to the list </a></div>
+</div>
+
+
+{% endblock %}

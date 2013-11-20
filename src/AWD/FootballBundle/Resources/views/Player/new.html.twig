@@ -1,0 +1,14 @@
+{% extends 'AWDFootballBundle::layout.html.twig' %}
+{% block title %}Player creation{% endblock %}
+{% block content%}
+    <h1>Player creation</h1>
+<div class="row">
+    <div class="col-lg-10">{{ form(form) }}</div>
+    <div class="col-lg-2 form-group">
+        <br />
+        <a href="{{ path('awd_player') }}"   class="btn btn-primary">
+            Back to the list
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+# src/AWD/FootballBundle/Resources/config/doctrine/Game.orm.yml
+AWD\FootballBundle\Entity\Game:
+  type: entity
+  repositoryClass: AWD\FootballBundle\Repository\GameRepository
+  table: game
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    team_one_id:
+      type: integer
+    team_two_id:
+      type: integer
+    winner_id:
+        type: integer
+        nullable: true
+#    team_one_name:
+#      type: string
+ #     length: 255
+ #   team_two_name:
+  #    type: string
+   #   length: 255
+    team_one_score:
+      type: integer
+      length: 2
+      nullable: true
+    team_two_score:
+      type: integer
+      length: 2
+      nullable: true
+    expires_at:
+      type: datetime
+    created_at:
+      type: datetime
+  oneToMany:
+    team_games:
+      targetEntity: TeamGame
+      mappedBy: game
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue, setExpiresAtValue ]

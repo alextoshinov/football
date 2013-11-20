@@ -1,0 +1,21 @@
+# src/AWD/FootballBundle/Resources/config/doctrine/TeamGame.orm.yml
+AWD\FootballBundle\Entity\TeamGame:
+  type: entity
+  table: team_game
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  manyToOne:
+    team:
+      targetEntity: Team
+      inversedBy: team_game
+      joinColumn:
+        name: team_id
+        referencedColumnName: id
+    game:
+      targetEntity: Game
+      inversedBy: team_game
+      joinColumn:
+        name: game_id
+        referencedColumnName: id

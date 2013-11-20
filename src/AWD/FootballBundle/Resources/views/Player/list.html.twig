@@ -1,0 +1,65 @@
+{% extends 'AWDFootballBundle::layout.html.twig' %}
+{% block title %}Player list{% endblock %}
+{% block nav %}
+    <ul class="nav navbar-nav">
+            <li ><a href="{{ path('awd_football_homepage') }}">Home</a></li>
+            <li><a href="{{ path('awd_team') }}">Teams</a></li>
+            <li class="active"><a href="{{ path('awd_player') }}">Players</a></li>
+            <li><a href="">Games</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+{% endblock %}
+{% block content%}
+    <h1>Player list</h1>
+
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Player Name</th>
+                <th>Type</th>
+                <th>Age</th>
+                <th>Has a red card</th>
+                <th>Is_activated</th>
+                <th>Expires_at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr {% if entity.ispenalized %}class="danger"{% endif %}>
+                <td><a href="{{ path('awd_player_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.firstname }} {{ entity.lastname }}</td>
+                <td>{{ entity.type }}</td>
+                <td>{{ entity.age }}</td>
+                <td>{% if entity.ispenalized %}YES{% else %}NO{% endif %}</td>
+                <td>{% if entity.isactivated %}YES{% else %}NO{% endif %}</td>
+                <td>{% if entity.expiresat %}{{ entity.expiresat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+
+                        <a href="{{ path('awd_player_show', { 'id': entity.id }) }}" class="btn btn-info" role="button">show</a>
+
+                        <a href="{{ path('awd_player_edit', { 'id': entity.id }) }}" class="btn btn-success" role="button">edit</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+            <a href="{{ path('awd_player_new') }}" class="btn btn-primary">
+                Create a new Player
+            </a>
+
+    {% endblock %}

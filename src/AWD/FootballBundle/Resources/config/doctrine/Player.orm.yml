@@ -1,0 +1,52 @@
+# src/AWD/FootballBundle/Resources/config/doctrine/Player.orm.yml
+AWD\FootballBundle\Entity\Player:
+  type: entity
+  repositoryClass: AWD\FootballBundle\Repository\PlayerRepository
+  table: player
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    type:
+      type: string
+      length: 255
+      nullable: true
+    first_name:
+      type: string
+      length: 255
+    last_name:
+      type: string
+      length: 255
+      nullable: true
+    age:
+      type: integer
+      length: 11
+      nullable: true
+    token:
+      type: string
+      length: 255
+      unique: true
+    is_penalized:
+      type: boolean
+      nullable: true
+    is_activated:
+      type: boolean
+      nullable: true
+    expires_at:
+      type: datetime
+    created_at:
+      type: datetime
+    updated_at:
+      type: datetime
+      nullable: true
+  manyToOne:
+       team:
+           targetEntity: Team
+           inversedBy: players
+           joinColumn:
+              name: team_id
+              referencedColumnName: id
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ,setTokenValue]
+    preUpdate: [ setUpdatedAtValue ]

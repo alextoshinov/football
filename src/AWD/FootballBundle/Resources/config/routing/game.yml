@@ -1,0 +1,30 @@
+awd_game:
+    pattern:  /
+    defaults: { _controller: "AWDFootballBundle:Game:index" }
+
+awd_game_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AWDFootballBundle:Game:show" }
+
+awd_game_new:
+    pattern:  /new
+    defaults: { _controller: "AWDFootballBundle:Game:new" }
+
+awd_game_create:
+    pattern:  /create
+    defaults: { _controller: "AWDFootballBundle:Game:create" }
+    requirements: { _method: post }
+
+awd_game_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AWDFootballBundle:Game:edit" }
+
+awd_game_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AWDFootballBundle:Game:update" }
+    requirements: { _method: post|put }
+
+awd_game_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AWDFootballBundle:Game:delete" }
+    requirements: { _method: post|delete }

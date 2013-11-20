@@ -1,0 +1,13 @@
+parameters:
+#    awd_football.example.class: AWD\FootballBundle\Example
+
+services:
+#    awd_football.example:
+#        class: %awd_football.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+       awd_football.form.type.game:
+           class: AWD\FootballBundle\Form\Type\GameType
+           tags:
+               - { name: form.type, alias: game }
+           arguments:
+                - @doctrine.orm.entity_manager

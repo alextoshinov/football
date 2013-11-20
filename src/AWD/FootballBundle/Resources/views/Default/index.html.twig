@@ -1,0 +1,81 @@
+{% extends 'AWDFootballBundle::layout.html.twig' %}
+{% block title %}Homepage{% endblock %}
+{% block nav %}
+    <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ path('awd_football_homepage') }}">Home</a></li>
+            <li><a href="{{ path('awd_team') }}">Teams</a></li>
+            <li><a href="{{ path('awd_player') }}">Players</a></li>
+            <li><a href="{{ path('awd_game') }}">Games</a></li>
+            
+          </ul>
+{% endblock %}
+{% block content %}
+
+<div id="row">  
+    <div class="col-lg-4">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Team ONE</th>
+                <th>Result</th>
+                <th>Team TWO</th>
+            </tr>
+       {% for game in allgames %}
+            <tr>
+                <td>{{game.teamoneid}}</td><td>{{game.teamonescore}}:{{game.teamtwoscore}}</td><td>{{game.teamtwoid}}</td>
+            </tr> 
+            
+       {% endfor %}
+        </table>    
+    </div>
+    <div class="col-lg-4">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Team ONE Winner</th>
+                <th>Result</th>
+                <th>Team TWO Winnew</th>
+            </tr>
+       {% for game in allwinners %}
+            <tr>
+                <td>{{game.teamoneid}}</td><td>{{game.teamonescore}}:{{game.teamtwoscore}}</td><td>{{game.teamtwoid}}</td>
+            </tr> 
+            
+       {% endfor %}
+        </table>    
+    </div>
+    <div class="col-lg-4">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Team ONE Final</th>
+                <th>Result</th>
+                <th>Team TWO Final</th>
+            </tr>
+       
+            <tr>
+                <td>Team One XX</td><td>:</td><td>Team Two XX</td>
+            </tr> 
+            
+       
+        </table>    
+    </div>
+ </div>    
+
+  <div id="row">
+    {% for team in teams %}
+      <div class="col-lg-2">
+        <div class="team">
+          <h5>{{ team.name }}</h5>
+        </div>
+        <table class="players">
+          {% for entity in team.activeplayers %}
+            <tr class="{{ cycle(['even', 'odd'], loop.index) }}">
+                <td class="player"><a href="{{ path('awd_player_show', { 'id': entity.id}) }}">{{ entity.firstname }} {{ entity.lastname }}</a></td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

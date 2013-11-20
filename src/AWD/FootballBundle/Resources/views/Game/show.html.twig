@@ -1,0 +1,55 @@
+{% extends 'AWDFootballBundle::layout.html.twig' %}
+{% block title %}Show game{% endblock %}
+{% block nav %}
+    <ul class="nav navbar-nav">
+            <li ><a href="{{ path('awd_football_homepage') }}">Home</a></li>
+            <li><a href="{{ path('awd_team') }}">Teams</a></li>
+            <li><a href="{{ path('awd_player') }}">Players</a></li>
+            <li class="active"><a href="{{ path('awd_game') }}">Games</a></li>
+            
+          </ul>
+{% endblock %}
+{% block content %}
+    <h1>Game</h1>
+
+    <table class="table table-condensed">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Team_one_id</th>
+                <td>{{ entity.teamoneid }}</td>
+            </tr>
+            <tr>
+                <th>Team_two_id</th>
+                <td>{{ entity.teamtwoid }}</td>
+            </tr>
+            <tr>
+                <th>Team_one_score</th>
+                <td>{{ entity.teamonescore }}</td>
+            </tr>
+            <tr>
+                <th>Team_two_score</th>
+                <td>{{ entity.teamtwoscore }}</td>
+            </tr>
+            <tr>
+                <th>Expires_at</th>
+                <td>{{ entity.expiresat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+        <a href="{{ path('awd_game') }}"  class="btn btn-primary">
+            Back to the list
+        </a>
+
+        <a href="{{ path('awd_game_edit', { 'id': entity.id }) }}" class="btn btn-success">
+            Edit
+        </a>
+    {{ form(delete_form) }}
+{% endblock %}

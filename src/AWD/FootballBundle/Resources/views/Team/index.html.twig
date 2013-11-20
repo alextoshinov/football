@@ -1,0 +1,44 @@
+{% extends 'AWDFootballBundle::layout.html.twig' %}
+{% block title %}Team list{% endblock %}
+{% block nav %}
+    <ul class="nav navbar-nav">
+            <li ><a href="{{ path('awd_football_homepage') }}">Home</a></li>
+            <li class="active"><a href="{{ path('awd_team') }}">Teams</a></li>
+            <li><a href="{{ path('awd_player') }}">Players</a></li>
+            <li><a href="">Games</a></li>
+          </ul>
+{% endblock %}
+{% block content%}
+    <h1>Team list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th>Team Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+
+                <td><a href="{{ path('awd_team_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>
+
+                        <a href="{{ path('awd_team_show', { 'id': entity.id }) }}" class="btn btn-info" role="button">show</a>
+
+                        <a href="{{ path('awd_team_edit', { 'id': entity.id }) }}" class="btn btn-success" role="button">edit</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+            <a href="{{ path('awd_team_new') }}" class="btn btn-primary">
+                Create a new Team
+            </a>
+
+    {% endblock %}

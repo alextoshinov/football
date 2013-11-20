@@ -1,0 +1,16 @@
+awd_football_homepage:
+    pattern:  /
+    defaults: { _controller: AWDFootballBundle:Default:index }
+    
+AWDFootballBundle_awd_player:
+     resource: "@AWDFootballBundle/Resources/config/routing/player.yml"
+     prefix:   /awd_player
+     
+AWDFootballBundle_awd_team:
+     resource: "@AWDFootballBundle/Resources/config/routing/team.yml"
+     prefix:   /awd_team
+     
+AWDFootballBundle_awd_game:
+     resource: "@AWDFootballBundle/Resources/config/routing/game.yml"
+     prefix:   /awd_game
+

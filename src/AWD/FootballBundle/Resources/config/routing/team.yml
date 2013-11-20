@@ -1,0 +1,30 @@
+awd_team:
+    pattern:  /
+    defaults: { _controller: "AWDFootballBundle:Team:index" }
+
+awd_team_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AWDFootballBundle:Team:show" }
+
+awd_team_new:
+    pattern:  /new
+    defaults: { _controller: "AWDFootballBundle:Team:new" }
+
+awd_team_create:
+    pattern:  /create
+    defaults: { _controller: "AWDFootballBundle:Team:create" }
+    requirements: { _method: post }
+
+awd_team_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AWDFootballBundle:Team:edit" }
+
+awd_team_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AWDFootballBundle:Team:update" }
+    requirements: { _method: post|put }
+
+awd_team_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AWDFootballBundle:Team:delete" }
+    requirements: { _method: post|delete }

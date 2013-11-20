@@ -1,0 +1,55 @@
+{% extends 'AWDFootballBundle::layout.html.twig' %}
+{% block title %}Game list{% endblock %}
+{% block nav %}
+    <ul class="nav navbar-nav">
+            <li ><a href="{{ path('awd_football_homepage') }}">Home</a></li>
+            <li><a href="{{ path('awd_team') }}">Teams</a></li>
+            <li><a href="{{ path('awd_player') }}">Players</a></li>
+            <li class="active"><a href="{{ path('awd_game') }}">Games</a></li>
+            
+          </ul>
+{% endblock %}
+{% block content %}
+    <h1>Game list</h1>
+
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Team_one_id</th>
+                <th>Team_two_id</th>
+                <th>Team_one_score</th>
+                <th>Team_two_score</th>
+                <th>Expires_at</th>
+                <th>Created_at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('awd_game_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.teamoneid }}</td>
+                <td>{{ entity.teamtwoid }}</td>
+                <td>{{ entity.teamonescore }}</td>
+                <td>{{ entity.teamtwoscore }}</td>
+                <td>{% if entity.expiresat %}{{ entity.expiresat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+
+                        <a href="{{ path('awd_game_show', { 'id': entity.id }) }}" class="btn btn-info" role="button">show</a>
+
+                        <a href="{{ path('awd_game_edit', { 'id': entity.id }) }}"  class="btn btn-success" role="button">edit</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+            <a href="{{ path('awd_game_new') }}"  class="btn btn-primary">
+                Create a new game
+            </a>
+
+    {% endblock %}

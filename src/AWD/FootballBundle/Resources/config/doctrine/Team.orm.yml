@@ -1,0 +1,22 @@
+# src/AWD/FootballBundle/Resources/config/doctrine/Team.orm.yml
+AWD\FootballBundle\Entity\Team:
+  type: entity
+  repositoryClass: AWD\FootballBundle\Repository\TeamRepository
+  table: team
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 255
+      unique: true
+  oneToMany:
+     players:
+        targetEntity: Player
+        mappedBy: team
+     team_games:
+        targetEntity: TeamGame
+        mappedBy: team
+        

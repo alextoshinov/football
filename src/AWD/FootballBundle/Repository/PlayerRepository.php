@@ -1,7 +1,7 @@
 <?php
 
 namespace AWD\FootballBundle\Repository;
-
+use AWD\FootballBundle\Entity\Player as Player;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -36,6 +36,32 @@ class PlayerRepository extends EntityRepository
         ->orderBy('t.id', 'DESC');
         $query = $qb->getQuery();
         return $query->getResult();
+    }
+    //
+    public function getForLuceneQuery($query)
+    {
+        $hits = Player::getLuceneIndex()->find($query);
+ 
+        $pks = array();
+        foreach ($hits as $hit)
+        {
+          $pks[] = $hit->pk;
+        }
+ 
+        if (empty($pks))
+        {
+          return array();
+        }
+ 
+        $q = $this->createQueryBuilder('p')
+            ->where('p.id IN (:pks)')
+            ->setParameter('pks', $pks)
+            ->andWhere('p.is_activated = :active')
+            ->setParameter('active', 1)
+            ->setMaxResults(20)
+            ->getQuery();
+ 
+        return $q->getResult();
     }
     //
 }

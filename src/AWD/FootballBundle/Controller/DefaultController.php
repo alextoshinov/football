@@ -38,4 +38,19 @@ class DefaultController extends Controller
           'allwinners'=>$allwinners
         ));
     }
+    //
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $this->getRequest()->get('query');
+ 
+        if(!$query) {
+            return $this->redirect($this->generateUrl('awd_player'));
+        }
+ 
+        $players = $em->getRepository('AWDFootballBundle:Player')->getForLuceneQuery($query);
+ 
+        return $this->render('AWDFootballBundle:Player:search.html.twig', array('players' => $players));
+    }
+    //
 }

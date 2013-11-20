@@ -33,3 +33,7 @@ awd_player_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "AWDFootballBundle:Player:delete" }
     requirements: { _method: post|delete }
+    
+awd_player_search:
+    pattern: /search
+    defaults: { _controller: "AWDFootballBundle:Player:search" }

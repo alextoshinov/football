@@ -435,16 +435,4 @@ class Player
         $index->addDocument($doc);
         $index->commit();
     }
-
-    /**
-     * @ORM\PostRemove
-     */
-    public function deleteLuceneIndex()
-    {
-        $index = self::getLuceneIndex();
- 
-        foreach ($index->find('pk:'.$this->getId()) as $hit) {
-            $index->delete($hit->id);
-        }
-    }
 }

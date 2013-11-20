@@ -48,5 +48,6 @@ AWD\FootballBundle\Entity\Player:
               name: team_id
               referencedColumnName: id
   lifecycleCallbacks:
-    prePersist: [ setCreatedAtValue ,setTokenValue]
-    preUpdate: [ setUpdatedAtValue ]
+    prePersist: [ setCreatedAtValue ,setTokenValue, updateLuceneIndex]
+    preUpdate: [ setUpdatedAtValue, updateLuceneIndex ]
+    postRemove: [ deleteLuceneIndex ]
